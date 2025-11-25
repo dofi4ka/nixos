@@ -7,9 +7,8 @@
   dotfiles = [
     ".zshrc"
     ".gitmessage"
-    ".config/kitty/kitty.conf"
-    ".config/waybar/style.css"
-    ".config/waybar/config.jsonc"
+    ".config/kitty"
+    ".config/waybar"
   ];
 in {
   home.username = "dofi4ka";
