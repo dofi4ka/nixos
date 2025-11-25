@@ -1,0 +1,31 @@
+
+
+
+# <type>[optional scope]: <description>
+#
+# Brief description is only about what was changed, in declarative way
+#
+# fix: Fix a bug
+# refactor: Refactor code without changing behavior
+# chore: Routine tasks / maintenance
+# style: Code style / formatting
+# build: Changes affecting build system / dependencies
+# ci: Continuous integration config / scripts
+# docs: Documentation only
+# perf: Improve performance
+# revert: Revert a previous commit
+# test: Add or update test
+
+# [optional body]
+#
+# Multiline or multiparagraph description of why and how was changed, in imperative way
+
+# [optional footer(s)]
+# 
+# Meta-information about commit
+#
+# Fixes #<issue id>
+# Closes #<issue id>
+# BREAKING CHANGE: <description>
+# Co-authored-by: name <email>
+# Reviewed-by: name <email>

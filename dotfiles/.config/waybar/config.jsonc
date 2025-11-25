@@ -6,7 +6,7 @@
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
-  "fixed-center": true
+  "fixed-center": true,
   // "modules-left": [],
   "modules-center": ["clock"],
   "modules-right": [

@@ -1,10 +1,11 @@
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   virtualisation.docker.enable = true;
 
@@ -18,37 +19,37 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.greetd = {
-	enable = true;
-	settings.default_session = {
-		command = "niri-session";
-		user = "dofi4ka";
-	};
+    enable = true;
+    settings.default_session = {
+      command = "niri-session";
+      user = "dofi4ka";
+    };
   };
 
   systemd.user.services.xwayland-satellite = {
-	description = "XWayland Satellite for X-compatability";
+    description = "XWayland Satellite for X-compatability";
 
-	wantedBy = [ "default.target" ];
+    wantedBy = ["default.target"];
 
-	serviceConfig = {
-		ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
-		Restart = "always";
-	};
+    serviceConfig = {
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      Restart = "always";
+    };
   };
 
   systemd.services.amnezia-vpn = {
-	description = "AmneziaVPN background service";
+    description = "AmneziaVPN background service";
 
-	wantedBy = [ "multi-user.target" ];
-	after = [ "network-online.target" ];
-	wants = [ "network-online.target" ];
+    wantedBy = ["multi-user.target"];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
 
-	serviceConfig = {
-		Type = "simple";
-		ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
-		Restart = "on-failure";
-		User = "root";
-	};
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+      Restart = "on-failure";
+      User = "root";
+    };
   };
 
   services.pulseaudio.enable = false;
@@ -60,22 +61,26 @@
     pulse.enable = true;
   };
 
-  users.users.dofi4ka = {
-    isNormalUser = true;
-    description = "dofi4ka";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.dofi4ka = {
+      isNormalUser = true;
+      description = "dofi4ka";
+      extraGroups = ["networkmanager" "wheel" "docker"];
+      packages = with pkgs; [
+      ];
+      shell = pkgs.zsh;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
   services.xserver.videoDrivers = ["nvidia"];
-  
+
   hardware = {
     graphics.enable = true;
     nvidia = {
       open = false;
-      nvidiaSettings = true;    
+      nvidiaSettings = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
@@ -83,31 +88,32 @@
   programs.firefox.enable = true;
   programs.nix-ld.enable = true;
   programs.steam = {
-  	enable = true;
-  	remotePlay.openFirewall = true;
-  	dedicatedServer.openFirewall = true;
-  	localNetworkGameTransfers.openFirewall = true;
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
+  programs.zsh.enable = true;
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
   ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.systemPackages = with pkgs; [
     steam-run
     telegram-desktop
-    neovim
     amnezia-vpn
     fastfetch
     wget
     appimage-run
     git
+    cassette
     btop
     nemo
     niri
-    alacritty
+    kitty
     waybar
     fuzzel
   ];
