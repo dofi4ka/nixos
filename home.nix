@@ -57,6 +57,7 @@ in {
     extraPackages = with pkgs; [
       alejandra
       gcc
+      yamlfmt
     ];
     opts = {
       number = true;
@@ -70,6 +71,7 @@ in {
         enable = true;
         servers = {
           nil_ls.enable = true;
+          yamlls.enable = true;
         };
       };
       conform-nvim = {
@@ -78,6 +80,9 @@ in {
           formatters_by_ft = {
             nix = [
               "alejandra"
+            ];
+            yaml = [
+              "yamlfmt"
             ];
           };
           format_on_save = {
@@ -90,6 +95,7 @@ in {
         enable = true;
         settings.ensure_installed = [
           "nix"
+          "yaml"
         ];
       };
     };
