@@ -51,6 +51,10 @@ in {
     enable = true;
   };
 
+  programs.tmux = {
+    enable = true;
+  };
+
   programs.nixvim = {
     enable = true;
     extraPackages = with pkgs; [
