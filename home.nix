@@ -9,6 +9,7 @@
     ".gitmessage"
     ".config/kitty"
     ".config/waybar"
+    ".config/niri"
   ];
 in {
   home.username = "dofi4ka";
