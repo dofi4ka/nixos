@@ -53,6 +53,11 @@ in {
 
   programs.tmux = {
     enable = true;
+    shell = "${pkgs.zsh}/bin/zsh";
+    baseIndex = 1;
+    mouse = true;
+    clock24 = true;
+    historyLimit = 50000;
   };
 
   programs.nixvim = {
