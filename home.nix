@@ -84,7 +84,7 @@ in {
         servers = {
           nil_ls.enable = true;
           yamlls.enable = true;
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
