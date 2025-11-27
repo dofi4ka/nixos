@@ -107,7 +107,6 @@
     amnezia-vpn
     fastfetch
     wget
-    appimage-run
     git
     cassette
     btop
