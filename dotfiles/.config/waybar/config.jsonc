@@ -31,6 +31,12 @@
     "interval": 3,
     "on-click": "btop"
   },
+  "network": {
+    "tooltip": false,
+    "format-wifi": " {essid}",
+    "format-ethernet": "",
+    "on-click": "nmrs"
+  },
   "memory": {
     "format": " {used:0.1f}Gi"
   },
