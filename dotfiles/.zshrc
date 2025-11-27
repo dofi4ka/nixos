@@ -14,7 +14,7 @@ git_prompt_info() {
   [[ -n $ref ]] && echo "󰊢 ($ref)"
 }
 
-bindkey -v
+# bindkey -v
 
 autoload -Uz compinit
 compinit
