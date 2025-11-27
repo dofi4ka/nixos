@@ -67,6 +67,9 @@ in {
       alejandra
       gcc
       yamlfmt
+      rustfmt
+      cargo
+      rustc
     ];
     opts = {
       number = true;
@@ -81,6 +84,11 @@ in {
         servers = {
           nil_ls.enable = true;
           yamlls.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
         };
       };
       conform-nvim = {
@@ -92,6 +100,9 @@ in {
             ];
             yaml = [
               "yamlfmt"
+            ];
+            rust = [
+              "rustfmt"
             ];
           };
           format_on_save = {
@@ -105,6 +116,7 @@ in {
         settings.ensure_installed = [
           "nix"
           "yaml"
+          "rust"
         ];
       };
     };
