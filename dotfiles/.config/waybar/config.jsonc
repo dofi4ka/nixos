@@ -35,7 +35,7 @@
     "tooltip": false,
     "format-wifi": " {essid}",
     "format-ethernet": "",
-    "on-click": "nmrs"
+    "on-click": "nmrs-ui"
   },
   "memory": {
     "format": " {used:0.1f}Gi"
