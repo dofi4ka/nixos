@@ -18,10 +18,30 @@
     nixvim,
     ...
   }: {
-    nixosConfigurations.nixos-btw = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./configuration.nix
+        ./hardware-configuration/desktop.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            sharedModules = [nixvim.homeModules.nixvim];
+            extraSpecialArgs = {inherit nixvim;};
+            users.dofi4ka = import ./home.nix;
+            backupFileExtension = "backup";
+          };
+        }
+      ];
+    };
+
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        ./configuration.nix
+        ./hardware-configuration/thinkpad-t495.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {

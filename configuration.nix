@@ -3,10 +3,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
   virtualisation.docker.enable = true;
 
   boot.loader.systemd-boot.enable = true;
