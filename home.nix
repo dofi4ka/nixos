@@ -80,6 +80,7 @@ in {
       expandtab = true;
     };
     plugins = {
+      wakatime.enable = true;
       lsp = {
         enable = true;
         servers = {
