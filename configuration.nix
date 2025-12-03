@@ -3,7 +3,14 @@
   pkgs,
   ...
 }: {
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+
+    daemon.settings = {
+      dns = ["8.8.8.8" "8.8.4.4" "1.1.1.1"];
+      dns-opts = ["use-vc"];
+    };
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
