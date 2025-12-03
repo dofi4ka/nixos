@@ -29,7 +29,7 @@
     "format": " {usage}%",
     "tooltip": true,
     "interval": 3,
-    "on-click": "btop"
+    "on-click": "kitty btop"
   },
   "network": {
     "tooltip": false,
