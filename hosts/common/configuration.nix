@@ -102,6 +102,7 @@
     kitty
     waybar
     fuzzel
+    jq
   ];
 
   programs.appimage = {
