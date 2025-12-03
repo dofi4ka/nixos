@@ -50,6 +50,7 @@ in {
     extraConfig = {
       init.defaultBranch = "main";
       commit.template = "${config.home.homeDirectory}/.gitmessage";
+      commit.verbose = true;
       core.editor = "nvim";
     };
   };
