@@ -12,7 +12,6 @@
     };
   };
   outputs = {
-    self,
     nixpkgs,
     home-manager,
     nixvim,
@@ -21,8 +20,9 @@
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
-        ./hardware-configuration/desktop.nix
+        ./hosts/common/configuration.nix
+        ./hosts/desktop/configuration.nix
+        ./hosts/desktop/hardware-configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -40,8 +40,8 @@
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
-        ./hardware-configuration/thinkpad-t495.nix
+        ./hosts/common/configuration.nix
+        ./hosts/laptop/hardware-configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager = {

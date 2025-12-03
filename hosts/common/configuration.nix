@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   virtualisation.docker = {
     enable = true;
 
@@ -20,6 +16,8 @@
 
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  nixpkgs.config.allowUnfree = true;
 
   services.greetd = {
     enable = true;
@@ -70,21 +68,7 @@
       isNormalUser = true;
       description = "dofi4ka";
       extraGroups = ["networkmanager" "wheel" "docker"];
-      packages = with pkgs; [
-      ];
       shell = pkgs.zsh;
-    };
-  };
-
-  nixpkgs.config.allowUnfree = true;
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware = {
-    graphics.enable = true;
-    nvidia = {
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
     };
   };
 
