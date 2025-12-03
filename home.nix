@@ -71,6 +71,7 @@ in {
       rustfmt
       cargo
       rustc
+      ruff
     ];
     opts = {
       number = true;
@@ -91,6 +92,7 @@ in {
             installCargo = false;
             installRustc = false;
           };
+          pyright.enable = true;
         };
       };
       conform-nvim = {
@@ -106,6 +108,9 @@ in {
             rust = [
               "rustfmt"
             ];
+            py = [
+              "ruff"
+            ];
           };
           format_on_save = {
             timeout_ms = 200;
@@ -119,6 +124,7 @@ in {
           "nix"
           "yaml"
           "rust"
+          "python"
         ];
       };
     };
