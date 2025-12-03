@@ -38,7 +38,8 @@
     "on-click": "nmrs-ui"
   },
   "memory": {
-    "format": " {used:0.1f}Gi"
+    "format": " {used:0.1f}Gi",
+    "on-click": "kitty btop"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
