@@ -23,6 +23,11 @@ in {
     (import flakes/nmrs.nix {inherit pkgs lib;})
     ansible
     wl-clipboard
+    uv
+    nodejs
+    pnpm
+    qbittorrent
+    anydesk
   ];
 
   home.file =
