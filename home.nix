@@ -78,6 +78,8 @@ in {
       cargo
       rustc
       ruff
+      elixir
+      erlang
     ];
     opts = {
       number = true;
@@ -99,6 +101,7 @@ in {
             installRustc = false;
           };
           pyright.enable = true;
+          elixirls.enable = true;
         };
       };
       conform-nvim = {
@@ -117,6 +120,9 @@ in {
             py = [
               "ruff"
             ];
+            elixir = [
+              "mix"
+            ];
           };
           format_on_save = {
             timeout_ms = 200;
@@ -131,6 +137,9 @@ in {
           "yaml"
           "rust"
           "python"
+          "elixir"
+          "eex"
+          "heex"
         ];
       };
     };
