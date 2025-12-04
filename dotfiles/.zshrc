@@ -37,7 +37,7 @@ rndcatloop() {
     curl -s $(curl -s https://api.thecatapi.com/v1/images/search | jq -r '.[0].url') -o "$tmp";
     clear;
     kitten icat "$tmp";
-    rm -f "tmp";
+    rm -f "$tmp";
     sleep "$delay";
   done
 }
