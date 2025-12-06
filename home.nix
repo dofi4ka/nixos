@@ -30,9 +30,6 @@ in {
     anydesk
     javaPackages.compiler.temurin-bin.jdk-21
     tesseract
-
-    quartus-prime-lite
-    rars
   ];
 
   home.file =
