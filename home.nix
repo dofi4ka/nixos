@@ -28,6 +28,11 @@ in {
     pnpm
     qbittorrent
     anydesk
+    javaPackages.compiler.temurin-bin.jdk-21
+    tesseract
+
+    quartus-prime-lite
+    rars
   ];
 
   home.file =
@@ -69,6 +74,14 @@ in {
   };
 
   programs.nixvim = {
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>xx";
+        action = "<cmd>Trouble diagnostics toggle<cr>";
+        options.desc = "Diagnostics (Trouble)";
+      }
+    ];
     enable = true;
     extraPackages = with pkgs; [
       alejandra
@@ -80,6 +93,7 @@ in {
       ruff
       elixir
       erlang
+      google-java-format
     ];
     opts = {
       number = true;
@@ -90,6 +104,9 @@ in {
     };
     plugins = {
       wakatime.enable = true;
+      trouble = {
+        enable = true;
+      };
       lsp = {
         enable = true;
         servers = {
@@ -102,30 +119,22 @@ in {
           };
           pyright.enable = true;
           elixirls.enable = true;
+          jdtls.enable = true;
         };
       };
       conform-nvim = {
         enable = true;
         settings = {
           formatters_by_ft = {
-            nix = [
-              "alejandra"
-            ];
-            yaml = [
-              "yamlfmt"
-            ];
-            rust = [
-              "rustfmt"
-            ];
-            py = [
-              "ruff"
-            ];
-            elixir = [
-              "mix"
-            ];
+            nix = ["alejandra"];
+            yaml = ["yamlfmt"];
+            rust = ["rustfmt"];
+            py = ["ruff"];
+            elixir = ["mix"];
+            java = ["google-java-format"];
           };
           format_on_save = {
-            timeout_ms = 200;
+            timeout_ms = 2000;
             lsp_fallback = true;
           };
         };
@@ -140,8 +149,30 @@ in {
           "elixir"
           "eex"
           "heex"
+          "java"
         ];
       };
+      cmp = {
+        enable = true;
+        autoEnableSources = true;
+        settings = {
+          mapping = {
+            "<Tab>" = "cmp.mapping.select_next_item()";
+            "<S-Tab>" = "cmp.mapping.select_prev_item()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-e>" = "cmp.mapping.abort()";
+          };
+          sources = [
+            {name = "nvim_lsp";}
+            {name = "buffer";}
+            {name = "path";}
+          ];
+        };
+      };
+      cmp-nvim-lsp.enable = true;
+      cmp-buffer.enable = true;
+      cmp-path.enable = true;
     };
     colorschemes.tokyonight.enable = true;
   };
