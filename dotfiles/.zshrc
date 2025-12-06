@@ -26,7 +26,7 @@ setopt hist_reduce_blanks
 
 alias ll='ls -lh --color=auto'
 alias la='ls -lha --color=auto'
-alias nc='nvim .nixos'
+alias nixc='nvim .nixos'
 alias nrsl='sudo nixos-rebuild --flake ~/.nixos#laptop switch'
 alias nrsd='sudo nixos-rebuild --flake ~/.nixos#desktop switch'
 
