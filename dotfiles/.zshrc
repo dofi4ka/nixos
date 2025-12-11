@@ -24,9 +24,12 @@ setopt sharehistory
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 
+alias f='yazi'
+
+alias ls='eza'
 alias ll='ls -lh --color=auto'
 alias la='ls -lha --color=auto'
-alias nixc='nvim ~/.nixos'
+alias nixc='cd ~/.nixos; nvim .'
 alias nrsl='sudo nixos-rebuild --flake ~/.nixos#laptop switch'
 alias nrsd='sudo nixos-rebuild --flake ~/.nixos#desktop switch'
 
@@ -44,3 +47,5 @@ rndcatloop() {
     sleep "$delay";
   done
 }
+
+eval "$(zoxide init zsh)"

@@ -30,6 +30,11 @@ in {
     anydesk
     javaPackages.compiler.temurin-bin.jdk-21
     tesseract
+
+    fzf
+    eza
+    yazi
+    zoxide
   ];
 
   home.file =
