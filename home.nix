@@ -78,6 +78,36 @@ in {
         action = "<cmd>Trouble diagnostics toggle<cr>";
         options.desc = "Diagnostics (Trouble)";
       }
+      {
+        mode = "n";
+        key = "<leader>ff";
+        action = "<cmd>Telescope find_files<cr>";
+        options.desc = "Telescope find files";
+      }
+      {
+        mode = "n";
+        key = "<leader>fg";
+        action = "<cmd>Telescope live_grep<cr>";
+        options.desc = "Telescope live grep";
+      }
+      {
+        mode = "n";
+        key = "<leader>fb";
+        action = "<cmd>Telescope buffers<cr>";
+        options.desc = "Telescope buffers";
+      }
+      {
+        mode = "n";
+        key = "<leader>fh";
+        action = "<cmd>Telescope help_tags<cr>";
+        options.desc = "Telescope help tags";
+      }
+      {
+        mode = "n";
+        key = "<leader>ee";
+        action = "<cmd>NvimTreeToggle<cr>";
+        options.desc = "NvimTree toggle";
+      }
     ];
     enable = true;
     extraPackages = with pkgs; [
@@ -100,10 +130,11 @@ in {
       expandtab = true;
     };
     plugins = {
+      nvim-tree.enable = true;
+      telescope.enable = true;
       wakatime.enable = true;
-      trouble = {
-        enable = true;
-      };
+      trouble.enable = true;
+      web-devicons.enable = true;
       lsp = {
         enable = true;
         servers = {
