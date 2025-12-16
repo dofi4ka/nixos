@@ -50,6 +50,11 @@ in {
       dotfiles
     );
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    NIXPKGS_ALLOW_UNFREE = "1";
+  };
+
   programs.git = {
     enable = true;
     userName = "dofi4ka";
