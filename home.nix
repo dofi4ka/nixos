@@ -159,6 +159,19 @@ in {
           elixirls.enable = true;
           jdtls.enable = true;
         };
+        keymaps = {
+          diagnostic = {
+            "<leader>j" = "goto_next";
+            "<leader>k" = "goto_prev";
+          };
+          lspBuf = {
+            K = "hover";
+            gD = "references";
+            gd = "definition";
+            gi = "implementation";
+            gt = "type_definition";
+          };
+        };
       };
       conform-nvim = {
         enable = true;
@@ -179,16 +192,21 @@ in {
       };
       treesitter = {
         enable = true;
-        settings.ensure_installed = [
-          "nix"
-          "yaml"
-          "rust"
-          "python"
-          "elixir"
-          "eex"
-          "heex"
-          "java"
-        ];
+        settings = {
+          ensure_installed = [
+            "nix"
+            "yaml"
+            "rust"
+            "python"
+            "elixir"
+            "eex"
+            "heex"
+            "java"
+          ];
+          highlight = {
+            enable = true;
+          };
+        };
       };
       cmp = {
         enable = true;
