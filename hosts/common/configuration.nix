@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  services.fprintd.enable = true;
+
   virtualisation.docker = {
     enable = true;
 
