@@ -1,12 +1,20 @@
 {pkgs, ...}: {
   services.fprintd.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
+  virtualisation = {
+    docker = {
+      enable = true;
 
-    daemon.settings = {
-      dns = ["8.8.8.8" "8.8.4.4" "1.1.1.1"];
-      dns-opts = ["use-vc"];
+      daemon.settings = {
+        dns = ["8.8.8.8" "8.8.4.4" "1.1.1.1"];
+        dns-opts = ["use-vc"];
+      };
+    };
+
+    podman = {
+      enable = true;
+      # dockerCompat = true; # Optional, for Docker socket emulation
+      defaultNetwork.settings.dns_enabled = true;
     };
   };
 
