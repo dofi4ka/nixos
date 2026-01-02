@@ -105,6 +105,7 @@
     waybar
     fuzzel
     jq
+    podman
   ];
 
   programs.appimage = {
