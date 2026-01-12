@@ -1,6 +1,7 @@
 
 
 # <type>[optional scope]: <description>
+#   feat: Add a feature
 #   fix: Fix a bug
 #   refactor: Refactor code without changing behavior
 #   chore: Routine tasks / maintenance
