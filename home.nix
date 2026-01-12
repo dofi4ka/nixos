@@ -31,6 +31,8 @@ in {
     javaPackages.compiler.temurin-bin.jdk-21
     tesseract
 
+    prismlauncher
+
     fzf
     eza
     yazi
