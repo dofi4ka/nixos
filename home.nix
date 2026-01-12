@@ -5,7 +5,6 @@
   ...
 }: let
   dotfiles = [
-    ".zshrc"
     ".gitmessage"
     ".config/kitty"
     ".config/waybar"
@@ -14,7 +13,7 @@
 in {
   home.username = "dofi4ka";
   home.homeDirectory = "/home/dofi4ka";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   home.packages = with pkgs; [
     tree
     waybar
