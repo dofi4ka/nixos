@@ -53,12 +53,16 @@ in {
 
   programs.git = {
     enable = true;
-    userName = "dofi4ka";
-    userEmail = "dofi4ka@yandex.ru";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "dofi4ka@yandex.ru";
+        name = "dofi4ka";
+      };
+      commit = {
+        template = "${config.home.homeDirectory}/.gitmessage";
+        verbose = true;
+      };
       init.defaultBranch = "main";
-      commit.template = "${config.home.homeDirectory}/.gitmessage";
-      commit.verbose = true;
       core.editor = "nvim";
     };
   };
@@ -92,6 +96,13 @@ in {
       strategy = ["history"];
     };
     defaultKeymap = "viins";
+
+    history = {
+      append = true;
+      extended = true;
+      share = true;
+      size = 10000;
+    };
 
     shellAliases = {
       f = "yazi";
