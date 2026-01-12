@@ -32,6 +32,8 @@ in {
     javaPackages.compiler.temurin-bin.jdk-21
     tesseract
 
+    leetcode-cli
+
     prismlauncher
   ];
 
