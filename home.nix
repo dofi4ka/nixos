@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  firefox-addons,
   ...
 }: let
   dotfiles = [
@@ -10,10 +11,11 @@
     ".config/waybar"
     ".config/niri"
   ];
+  channel = "25.11";
 in {
   home.username = "dofi4ka";
   home.homeDirectory = "/home/dofi4ka";
-  home.stateVersion = "25.11";
+  home.stateVersion = channel;
   home.packages = with pkgs; [
     tree
     waybar
@@ -64,6 +66,135 @@ in {
       };
       init.defaultBranch = "main";
       core.editor = "nvim";
+    };
+  };
+
+  programs.librewolf = {
+    enable = true;
+    policies = {
+      BlockAboutConfig = true;
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      ExtensionSettings = {
+        "uBlock0@raymondhill.net" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        "{3c078156-979c-498b-8990-85f7987dd929}" = {
+          default_area = "navbar";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        "foxyproxy@eric.h.jung" = {
+          default_area = "menupanel";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+      };
+    };
+
+    settings = {
+      "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+      "webgl.disabled" = false;
+      "privacy.resistFingerprinting" = false;
+      "extensions.quarantinedDomains.enabled" = false;
+    };
+
+    profiles.default = {
+      id = 0;
+      isDefault = true;
+      name = "default";
+
+      settings = {
+        "extensions.autoDisableScopes" = 0;
+      };
+
+      userChrome = ''
+        #TabsToolbar, #sidebar-main  {
+          display: none !important;
+        }
+
+        #sidebar-box {
+          padding-block-end: none !important;
+        }
+
+        #sidebar {
+          border-radius: none !important;
+          box-shadow: none !important;
+          outline: none !important;
+        }
+      '';
+
+      search = {
+        default = "ddg";
+        privateDefault = "ddg";
+        force = true;
+
+        order = [
+          "ddg"
+          "yandex"
+          "perplexity"
+          "nix-packages"
+          "nix-options"
+          "nix-home-manager-options"
+          "nixos-wiki"
+        ];
+
+        engines = {
+          yandex = {
+            name = "Yandex";
+            urls = [{template = "https://yandex.ru/search?text={searchTerms}";}];
+            iconMapObj."16" = "https://yandex.ru/favicon.ico";
+            definedAliases = ["@ya"];
+          };
+
+          nix-packages = {
+            name = "Nix Packages";
+            urls = [{template = "https://search.nixos.org/packages?channel={channel}&query={searchTerms}";}];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@np"];
+          };
+
+          nix-options = {
+            name = "Nix Options";
+            urls = [{template = "https://search.nixos.org/options?channel={channel}&query={searchTerms}";}];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@no"];
+          };
+
+          nix-home-manager-options = {
+            name = "Nix Home Manager Options";
+            urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-{channel}";}];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nho"];
+          };
+
+          nixos-wiki = {
+            name = "NixOS Wiki";
+            urls = [{template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";}];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nw"];
+          };
+        };
+      };
+
+      extensions = {
+        packages = with firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+          bitwarden
+          sidebery
+          foxyproxy-standard
+        ];
+        force = true;
+      };
     };
   };
 

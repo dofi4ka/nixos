@@ -10,11 +10,16 @@
       url = "github:nix-community/nixvim/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,
     home-manager,
     nixvim,
+    firefox-addons,
     ...
   }: {
     nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
@@ -29,7 +34,10 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             sharedModules = [nixvim.homeModules.nixvim];
-            extraSpecialArgs = {inherit nixvim;};
+            extraSpecialArgs = {
+              inherit nixvim;
+              inherit firefox-addons;
+            };
             users.dofi4ka = import ./home.nix;
             backupFileExtension = "backup";
           };
@@ -48,7 +56,10 @@
             useGlobalPkgs = true;
             useUserPackages = true;
             sharedModules = [nixvim.homeModules.nixvim];
-            extraSpecialArgs = {inherit nixvim;};
+            extraSpecialArgs = {
+              inherit nixvim;
+              inherit firefox-addons;
+            };
             users.dofi4ka = import ./home.nix;
             backupFileExtension = "backup";
           };
