@@ -23,6 +23,7 @@
 
   networking.hostName = "nixos-btw";
   networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
 
   time.timeZone = "Europe/Moscow";
   i18n.defaultLocale = "en_US.UTF-8";
