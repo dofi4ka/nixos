@@ -31,11 +31,6 @@ in {
     tesseract
 
     prismlauncher
-
-    fzf
-    eza
-    yazi
-    zoxide
   ];
 
   home.file =
@@ -68,8 +63,62 @@ in {
     };
   };
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
+    enableCompletion = true;
+
+    autosuggestion = {
+      enable = true;
+      strategy = ["history"];
+    };
+    defaultKeymap = "viins";
+
+    shellAliases = {
+      f = "yazi";
+      nixc = "cd ~/.nixos && nvim .";
+      nrsl = "sudo nixos-rebuild --flake ~/.nixos#laptop switch";
+      nrsd = "sudo nixos-rebuild --flake ~/.nixos#desktop switch";
+    };
+
+    siteFunctions = {
+      mkcd = ''
+        mkdir --parents "$1" && cd "$1"
+      '';
+      rndcat = ''
+        kitten icat $(curl -s https://api.thecatapi.com/v1/images/search | jq -r '.[0].url')
+      '';
+      rndcatloop = ''
+        local delay="$\{1:-5}"
+        while :; do
+          tmp="$(mktemp)";
+          curl -s $(curl -s https://api.thecatapi.com/v1/images/search | jq -r '.[0].url') -o "$tmp";
+          clear;
+          kitten icat "$tmp";
+          rm -f "$tmp";
+          sleep "$delay";
+        done
+      '';
+    };
   };
 
   programs.tmux = {
