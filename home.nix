@@ -121,14 +121,30 @@ in {
       };
 
       userChrome = ''
-        #TabsToolbar, #sidebar-main  {
+        /* Defatul horizontal tabs */
+        #TabsToolbar,
+
+        /* Sidebar menu with links. */
+        #sidebar-main,
+
+        /* UI elements to the left of urlbar. */
+        #sidebar-button, #back-button,
+        #forward-button, #stop-reload-button,
+        #customizableui-special-spring1,
+
+        /* UI elements to the right of urlbar. */
+        #customizableui-special-spring2,
+
+        /* Accounts button */
+        #fxa-toolbar-menu-button
+
+        {
           display: none !important;
         }
 
         #sidebar-box {
           padding-block-end: none !important;
         }
-
         #sidebar {
           border-radius: none !important;
           box-shadow: none !important;
