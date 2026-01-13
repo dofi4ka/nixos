@@ -338,7 +338,6 @@ in {
       cargo
       rustc
       ruff
-      elixir
       erlang
       google-java-format
     ];
@@ -366,7 +365,6 @@ in {
             installRustc = false;
           };
           pyright.enable = true;
-          elixirls.enable = true;
           jdtls.enable = true;
         };
         keymaps = {
@@ -376,7 +374,7 @@ in {
           };
           lspBuf = {
             K = "hover";
-            gD = "references";
+            gr = "references";
             gd = "definition";
             gi = "implementation";
             gt = "type_definition";
@@ -391,7 +389,6 @@ in {
             yaml = ["yamlfmt"];
             rust = ["rustfmt"];
             py = ["ruff"];
-            elixir = ["mix"];
             java = ["google-java-format"];
           };
           format_on_save = {
@@ -408,9 +405,6 @@ in {
             "yaml"
             "rust"
             "python"
-            "elixir"
-            "eex"
-            "heex"
             "java"
           ];
           highlight = {
