@@ -292,6 +292,98 @@ in {
 
   programs.nixvim = {
     keymaps = [
+      # Move around windows using <A-[hjkl]> keys
+      {
+        mode = "n";
+        key = "<A-h>";
+        action = "<C-w>h";
+        options.desc = "Move to the window left";
+      }
+      {
+        mode = "n";
+        key = "<A-l>";
+        action = "<C-w>l";
+        options.desc = "Move to the window right";
+      }
+      {
+        mode = "n";
+        key = "<A-j>";
+        action = "<C-w>j";
+        options.desc = "Move to the window below";
+      }
+      {
+        mode = "n";
+        key = "<A-k>";
+        action = "<C-w>k";
+        options.desc = "Move to the window up";
+      }
+      # Move around windows using <A-[hjkl]> keys in insert mode
+      {
+        mode = "i";
+        key = "<A-h>";
+        action = "<C-\\><C-n><C-w>h";
+        options.desc = "Move to the window left";
+      }
+      {
+        mode = "i";
+        key = "<A-l>";
+        action = "<C-\\><C-n><C-w>l";
+        options.desc = "Move to the window right";
+      }
+      {
+        mode = "i";
+        key = "<A-j>";
+        action = "<C-\\><C-n><C-w>j";
+        options.desc = "Move to the window below";
+      }
+      {
+        mode = "i";
+        key = "<A-k>";
+        action = "<C-\\><C-n><C-w>k";
+        options.desc = "Move to the window up";
+      }
+      # Move around windows using <A-[hjkl]> keys in terminal mode
+      {
+        mode = "t";
+        key = "<A-h>";
+        action = "<C-\\><C-n><C-w>h";
+        options.desc = "Move to the window left";
+      }
+      {
+        mode = "t";
+        key = "<A-l>";
+        action = "<C-\\><C-n><C-w>l";
+        options.desc = "Move to the window right";
+      }
+      {
+        mode = "t";
+        key = "<A-j>";
+        action = "<C-\\><C-n><C-w>j";
+        options.desc = "Move to the window below";
+      }
+      {
+        mode = "t";
+        key = "<A-k>";
+        action = "<C-\\><C-n><C-w>k";
+        options.desc = "Move to the window up";
+      }
+      {
+        mode = "t";
+        key = "<A-Esc>";
+        action = "<C-\\><C-n>";
+        options.desc = "Exit terminal mode";
+      }
+      {
+        mode = "n";
+        key = "<leader>w";
+        action = "<C-w>";
+      }
+      {
+        mode = "n";
+        key = "<leader>tt";
+        action = "<cmd>terminal<cr>";
+        options.desc = "Open a terminal";
+      }
       {
         mode = "n";
         key = "<leader>xx";
@@ -347,7 +439,9 @@ in {
       tabstop = 2;
       shiftwidth = 2;
       expandtab = true;
+      clipboard = "unnamedplus";
     };
+    globals.mapleader = " ";
     plugins = {
       nvim-tree.enable = true;
       telescope.enable = true;
@@ -378,6 +472,9 @@ in {
             gd = "definition";
             gi = "implementation";
             gt = "type_definition";
+            "<leader>lr" = "rename";
+            "<leader>lc" = "code_action";
+            "<leader>lf" = "format";
           };
         };
       };
