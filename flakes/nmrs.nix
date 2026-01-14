@@ -4,10 +4,10 @@
   ...
 }: let
   src = pkgs.fetchFromGitHub {
-    owner = "dofi4ka";
+    owner = "cachebag";
     repo = "nmrs";
-    rev = "d7dcc35f90ec8c08b2cb4777308432d943c6b98d";
-    sha256 = "sha256-2dcV20fkFOBkBu2HNNZxQZq0nCzd8qwiyxcwmOicTYs=";
+    rev = "4e024ce1f30c43c50be12153a8f854e9dc1a007c";
+    sha256 = "1s6lqpp3fvnk49jbn3zjh66vf5xd93lwrjy5z3fvmg9vqc7hirby";
   };
   rustPlatform = pkgs.makeRustPlatform {
     cargo = pkgs.cargo;
@@ -16,11 +16,11 @@
 in
   rustPlatform.buildRustPackage {
     pname = "nmrs";
-    version = "0.1.0-beta";
+    version = "1.3.5";
 
     inherit src;
 
-    cargoHash = "sha256-bGfDO3kLwecOnXMr+L1o4nUytx8hQGqdNOmOZHnG3/Y=";
+    cargoHash = "sha256-2+EaId/l0WIf93e1gcBu7nhF2yxxMYg8bFSAIYLlo8Q=";
 
     nativeBuildInputs = with pkgs;
       [
