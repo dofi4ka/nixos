@@ -463,7 +463,7 @@ in {
           };
           pyright.enable = true;
           jdtls.enable = true;
-          tsserver.enable = true;
+          ts_ls.enable = true;
         };
         keymaps = {
           diagnostic = {
