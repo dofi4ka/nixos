@@ -432,6 +432,9 @@ in {
       ruff
       erlang
       google-java-format
+      nodejs
+      typescript-language-server
+      prettier
     ];
     opts = {
       number = true;
@@ -460,6 +463,7 @@ in {
           };
           pyright.enable = true;
           jdtls.enable = true;
+          tsserver.enable = true;
         };
         keymaps = {
           diagnostic = {
@@ -487,6 +491,10 @@ in {
             rust = ["rustfmt"];
             py = ["ruff"];
             java = ["google-java-format"];
+            javascript = ["prettier"];
+            typescript = ["prettier"];
+            javascriptreact = ["prettier"];
+            typescriptreact = ["prettier"];
           };
           format_on_save = {
             timeout_ms = 2000;
@@ -503,6 +511,8 @@ in {
             "rust"
             "python"
             "java"
+            "javascript"
+            "typescript"
           ];
           highlight = {
             enable = true;
