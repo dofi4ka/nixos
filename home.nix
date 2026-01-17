@@ -177,21 +177,21 @@ in {
 
           nix-packages = {
             name = "Nix Packages";
-            urls = [{template = "https://search.nixos.org/packages?channel={channel}&query={searchTerms}";}];
+            urls = [{template = "https://search.nixos.org/packages?channel=${channel}&query={searchTerms}";}];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@np"];
           };
 
           nix-options = {
             name = "Nix Options";
-            urls = [{template = "https://search.nixos.org/options?channel={channel}&query={searchTerms}";}];
+            urls = [{template = "https://search.nixos.org/options?channel=${channel}&query={searchTerms}";}];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@no"];
           };
 
           nix-home-manager-options = {
             name = "Nix Home Manager Options";
-            urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-{channel}";}];
+            urls = [{template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=release-${channel}";}];
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@nho"];
           };
