@@ -268,14 +268,13 @@ in {
         kitten icat $(curl -s https://api.thecatapi.com/v1/images/search | jq -r '.[0].url')
       '';
       rndcatloop = ''
-        local delay="$\{1:-5}"
         while :; do
           tmp="$(mktemp)";
           curl -s $(curl -s https://api.thecatapi.com/v1/images/search | jq -r '.[0].url') -o "$tmp";
           clear;
           kitten icat "$tmp";
           rm -f "$tmp";
-          sleep "$delay";
+          sleep 5;
         done
       '';
     };
