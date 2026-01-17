@@ -429,7 +429,7 @@ in {
       rustfmt
       cargo
       rustc
-      ruff
+      black
       erlang
       google-java-format
       nodejs
@@ -489,7 +489,7 @@ in {
             nix = ["alejandra"];
             yaml = ["yamlfmt"];
             rust = ["rustfmt"];
-            py = ["ruff"];
+            python = ["black"];
             java = ["google-java-format"];
             javascript = ["prettier"];
             typescript = ["prettier"];
