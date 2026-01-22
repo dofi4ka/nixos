@@ -28,7 +28,6 @@ in {
     nodejs
     pnpm
     qbittorrent
-    anydesk
     javaPackages.compiler.temurin-bin.jdk-21
     tesseract
 

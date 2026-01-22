@@ -66,5 +66,28 @@
         }
       ];
     };
+
+    nixosConfigurations.macbook = nixpkgs.lib.nixosSystem {
+      modules = [
+        ./hosts/macbook/configuration.nix
+        ./hosts/macbook/hardware-configuration.nix
+        # /etc/nixos/configuration.nix
+        /etc/nixos/apple-silicon-support
+        home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            sharedModules = [nixvim.homeModules.nixvim];
+            extraSpecialArgs = {
+              inherit nixvim;
+              inherit firefox-addons;
+            };
+            users.dofi4ka = import ./home.nix;
+            backupFileExtension = "backup";
+          };
+        }
+      ];
+    };
   };
 }
