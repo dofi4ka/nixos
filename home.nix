@@ -108,6 +108,7 @@ in {
       "webgl.disabled" = false;
       "privacy.resistFingerprinting" = false;
       "extensions.quarantinedDomains.enabled" = false;
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
     };
 
     profiles.default = {
