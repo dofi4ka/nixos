@@ -433,6 +433,7 @@ in {
       nodejs
       typescript-language-server
       prettier
+      clang
     ];
     opts = {
       number = true;
@@ -462,6 +463,7 @@ in {
           pyright.enable = true;
           jdtls.enable = true;
           ts_ls.enable = true;
+          clangd.enable = true;
         };
         keymaps = {
           diagnostic = {
@@ -493,6 +495,7 @@ in {
             typescript = ["prettier"];
             javascriptreact = ["prettier"];
             typescriptreact = ["prettier"];
+            cpp = ["clang-format"];
           };
           format_on_save = {
             timeout_ms = 2000;
@@ -511,6 +514,7 @@ in {
             "java"
             "javascript"
             "typescript"
+            "cpp"
           ];
           highlight = {
             enable = true;
