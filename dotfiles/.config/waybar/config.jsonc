@@ -1,23 +1,23 @@
 {
   "layer": "bottom",
-  "position": "top",
+  "position": "bottom",
   "height": 40,
   "spacing": 2,
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
   "fixed-center": true,
-  // "modules-left": [],
-  "modules-center": ["clock"],
-  "modules-right": [
-    "cpu",
-    "memory",
-    "pulseaudio",
-    "network",
-    "backlight",
+  "modules-left": [
+    "tray",
     "battery",
-    "tray"
+    "backlight",
+    "network",
+    "pulseaudio",
+    "memory",
+    "cpu"
   ],
+  "modules-center": ["clock"],
+  // "modules-right": [],
   "tray": {
     "show-passive-items": true,
     "spacing": 10
