@@ -6,17 +6,10 @@ input {
         }
     }
 
-    touchpad {
-        tap
-    }
+    touchpad { tap; }
 
-    mouse {
-        accel-profile "flat"
-    }
-
-    trackpoint {
-        accel-profile "flat"
-    }
+    mouse { accel-profile "flat"; }
+    trackpoint { accel-profile "flat"; }
 }
 
 cursor {
@@ -60,23 +53,11 @@ layout {
         active-color "#7fc8ff"
         inactive-color "#505050"
     }
-
-    border {
-        off
-    }
-
-    shadow {
-    }
-
-    struts {
-    }
 }
 
 spawn-at-startup "waybar"
 
-hotkey-overlay {
-    skip-at-startup
-}
+hotkey-overlay { skip-at-startup; }
 
 prefer-no-csd
 
