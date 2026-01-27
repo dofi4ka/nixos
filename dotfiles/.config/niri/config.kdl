@@ -20,6 +20,9 @@ input {
 }
 
 cursor {
+    xcursor-theme "Blue-Archive-Millenium-Cursor"
+    xcursor-size 24
+
     hide-when-typing
     hide-after-inactive-ms 3000
 }
