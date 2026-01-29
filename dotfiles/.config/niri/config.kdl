@@ -2,8 +2,11 @@ input {
     keyboard {
         xkb {
             layout "us,ru"
-            options "grp:caps_toggle"
+            options "caps:escape,grp:shifts_toggle"
         }
+
+        repeat-delay 600
+        repeat-rate 1
     }
 
     touchpad { tap; }
