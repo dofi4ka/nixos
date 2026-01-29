@@ -34,6 +34,9 @@ in {
     leetcode-cli
 
     prismlauncher
+
+    telegram-desktop
+    libreoffice
   ];
   home.file =
     builtins.listToAttrs
