@@ -12,54 +12,105 @@
     ".config/niri"
   ];
   channel = "25.11";
+
+  GTK_THEME_NAME = "Graphite";
+  GTK_CURSOR_NAME = "graphite-dark";
+  GTK_ICONS_NAME = "Fluent-dark";
+  GTK_FONT = "DejaVuSans";
+  GTK_DARK = true;
+
+  GTK_FONTS_PACKAGE = pkgs.dejavu_fonts;
+  GTK_THEME_PACKAGE = pkgs.graphite-gtk-theme;
+  GTK_CURSOR_PACKAGE = pkgs.graphite-cursors;
+  GTK_ICONS_PACKAGE = pkgs.fluent-icon-theme;
 in {
-  home.username = "dofi4ka";
-  home.homeDirectory = "/home/dofi4ka";
-  home.stateVersion = channel;
-  home.packages = with pkgs; [
-    tree
-    waybar
-    pavucontrol
-    (import flakes/cursor.nix {inherit pkgs lib;})
-    (import flakes/nmrs.nix {inherit pkgs lib;})
-    ansible
-    wl-clipboard
-    uv
-    nodejs
-    pnpm
-    qbittorrent
-    javaPackages.compiler.temurin-bin.jdk-21
-    tesseract
+  home = {
+    username = "dofi4ka";
+    homeDirectory = "/home/dofi4ka";
+    stateVersion = channel;
+    packages = with pkgs; [
+      tree
+      waybar
+      pavucontrol
+      (import flakes/cursor.nix {inherit pkgs lib;})
+      (import flakes/nmrs.nix {inherit pkgs lib;})
+      ansible
+      wl-clipboard
+      uv
+      nodejs
+      pnpm
+      qbittorrent
+      javaPackages.compiler.temurin-bin.jdk-21
+      tesseract
 
-    leetcode-cli
+      leetcode-cli
 
-    prismlauncher
+      prismlauncher
 
-    telegram-desktop
-    libreoffice
-  ];
-  home.file =
-    builtins.listToAttrs
-    (
-      map
-      (path: {
-        name = "${path}";
-        value = {
-          source = ./dotfiles/${path};
-        };
-      })
-      dotfiles
-    );
-  home.pointerCursor = {
-    enable = true;
-    gtk.enable = true;
-    name = "graphite-dark";
-    package = pkgs.graphite-cursors;
+      telegram-desktop
+      libreoffice
+      nemo
+    ];
+
+    file =
+      builtins.listToAttrs
+      (
+        map
+        (path: {
+          name = "${path}";
+          value = {
+            source = ./dotfiles/${path};
+          };
+        })
+        dotfiles
+      );
+
+    pointerCursor = {
+      enable = true;
+      gtk.enable = true;
+      name = GTK_CURSOR_NAME;
+      package = GTK_CURSOR_PACKAGE;
+    };
+
+    sessionVariables = {
+      GTK_THEME = GTK_THEME_NAME;
+
+      EDITOR = "nvim";
+      NIXPKGS_ALLOW_UNFREE = "1";
+    };
   };
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    NIXPKGS_ALLOW_UNFREE = "1";
+  gtk = {
+    enable = true;
+
+    colorScheme =
+      if GTK_DARK
+      then "dark"
+      else "light";
+    font = {
+      name = GTK_FONT;
+      package = GTK_FONTS_PACKAGE;
+    };
+    theme = {
+      name = GTK_THEME_NAME;
+      package = GTK_THEME_PACKAGE;
+    };
+    iconTheme = {
+      name = GTK_ICONS_NAME;
+      package = GTK_ICONS_PACKAGE;
+    };
+    cursorTheme = {
+      name = GTK_CURSOR_NAME;
+      package = GTK_CURSOR_PACKAGE;
+    };
+
+    gtk4 = {
+      enable = true;
+      theme = {
+        name = GTK_THEME_NAME;
+        package = GTK_THEME_PACKAGE;
+      };
+    };
   };
 
   programs.git = {

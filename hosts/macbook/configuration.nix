@@ -11,6 +11,7 @@
   nixpkgs.config.allowUnfree = true;
 
   programs.zsh.enable = true;
+  programs.dconf.enable = true;
   users = {
     defaultUserShell = pkgs.zsh;
     users.dofi4ka = {
