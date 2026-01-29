@@ -13,7 +13,7 @@ input {
 }
 
 cursor {
-    xcursor-theme "Blue-Archive-Millenium-Cursor"
+    xcursor-theme "graphite-dark"
     xcursor-size 24
 
     hide-when-typing

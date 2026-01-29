@@ -50,24 +50,12 @@ in {
       })
       dotfiles
     );
-  home.pointerCursor = let
-    getFrom = url: hash: name: {
-      enable = true;
-      gtk.enable = true;
-      name = name;
-      package = pkgs.runCommand "handleCursorFiles" {} ''
-        mkdir -p $out/share/icons
-        ln -s ${pkgs.fetchzip {
-          url = url;
-          hash = hash;
-        }} $out/share/icons/${name}
-      '';
-    };
-  in
-    getFrom
-    "https://github.com/notwindstone/BlueArchive-Cursors/archive/5d561351ba92b1f195ecd34fee4c21629f04d882.zip"
-    "sha256-LLfv0tNbfYOedSzyknFcX70BrNCX2QxcrHGMa09k6Gk="
-    "Blue-Archive-Millenium-Cursor";
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    name = "graphite-dark";
+    package = pkgs.graphite-cursors;
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";
