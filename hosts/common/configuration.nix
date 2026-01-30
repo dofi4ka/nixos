@@ -17,6 +17,7 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+  programs.dconf.enable = true;
 
   hardware.bluetooth = {
     enable = true;
@@ -80,8 +81,29 @@
     };
   };
 
+  security = {
+    rtkit.enable = true;
+    sudo = {
+      enable = true;
+      extraRules = [
+        {
+          commands = [
+            {
+              command = "${pkgs.amneziawg-tools}/bin/awg-quick";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.amneziawg-tools}/bin/awg-quick down";
+              options = ["NOPASSWD"];
+            }
+          ];
+          groups = ["wheel"];
+        }
+      ];
+    };
+  };
+
   services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
