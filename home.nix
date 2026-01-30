@@ -39,6 +39,10 @@ in {
       javaPackages.compiler.temurin-bin.jdk-21
       tesseract
 
+      jq
+      btop
+      gnumake
+
       swww
       leetcode-cli
 
