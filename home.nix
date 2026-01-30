@@ -34,7 +34,6 @@ in {
       waybar
       pavucontrol
       (import flakes/cursor.nix {inherit pkgs lib;})
-      (import flakes/nmrs.nix {inherit pkgs lib;})
       ansible
       wl-clipboard
       uv
