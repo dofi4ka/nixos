@@ -10,6 +10,7 @@
     ".config/kitty"
     ".config/waybar"
     ".config/niri"
+    "wallpapers"
   ];
   channel = "25.11";
 
@@ -43,6 +44,7 @@ in {
       javaPackages.compiler.temurin-bin.jdk-21
       tesseract
 
+      swww
       leetcode-cli
 
       prismlauncher

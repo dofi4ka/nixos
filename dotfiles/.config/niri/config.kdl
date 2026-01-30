@@ -59,6 +59,7 @@ layout {
 }
 
 spawn-at-startup "waybar"
+spawn-at-startup "swww-daemon"
 
 hotkey-overlay { skip-at-startup; }
 
