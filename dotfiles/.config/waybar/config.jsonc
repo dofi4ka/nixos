@@ -11,6 +11,7 @@
     "tray",
     "battery",
     "backlight",
+    "custom/vpn",
     "network",
     "pulseaudio",
     "memory",
@@ -66,5 +67,11 @@
     "format-alt": "{icon} {time}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "interval": 1
+  },
+  "custom/vpn": {
+    "format": "{text}",
+    "exec": "if [ -z \"$(ip a | grep wg0)\" ]; then echo \" VPN\"; else echo \" VPN\"; fi;",
+    "interval": 1,
+    "on-click": "if [ -z \"$(ip a | grep wg0)\" ]; then bash ~/.config/waybar/scripts/vpn-up; else bash ~/.config/waybar/scripts/vpn-down; fi;"
   }
 }

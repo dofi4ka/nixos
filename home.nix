@@ -5,13 +5,6 @@
   firefox-addons,
   ...
 }: let
-  dotfiles = [
-    ".gitmessage"
-    ".config/kitty"
-    ".config/waybar"
-    ".config/niri"
-    "wallpapers"
-  ];
   channel = "25.11";
 
   GTK_THEME_NAME = "Graphite";
@@ -30,6 +23,9 @@ in {
     homeDirectory = "/home/dofi4ka";
     stateVersion = channel;
     packages = with pkgs; [
+      # linuxKernel.packages.linux_hardened.amneziawg
+      amneziawg-go
+      amneziawg-tools
       tree
       waybar
       pavucontrol
@@ -53,18 +49,14 @@ in {
       nemo
     ];
 
-    file =
-      builtins.listToAttrs
-      (
-        map
-        (path: {
-          name = "${path}";
-          value = {
-            source = ./dotfiles/${path};
-          };
-        })
-        dotfiles
-      );
+    file.".gitmessage".source = ./dotfiles/.gitmessage;
+    file.".config/kitty".source = ./dotfiles/.config/kitty;
+    file.".config/waybar/style.css".source = ./dotfiles/.config/waybar/style.css;
+    file.".config/waybar/config.jsonc".source = ./dotfiles/.config/waybar/config.jsonc;
+    file.".config/waybar/scripts/vpn-up".text = "sudo ${pkgs.amneziawg-tools}/bin/awg-quick up wg0";
+    file.".config/waybar/scripts/vpn-down".text = "sudo ${pkgs.amneziawg-tools}/bin/awg-quick down wg0";
+    file.".config/niri".source = ./dotfiles/.config/niri;
+    file."wallpapers".source = ./dotfiles/wallpapers;
 
     pointerCursor = {
       enable = true;
@@ -318,6 +310,8 @@ in {
       nixc = "cd ~/.nixos && nvim .";
       nrsl = "sudo nixos-rebuild --flake ~/.nixos#laptop switch";
       nrsd = "sudo nixos-rebuild --flake ~/.nixos#desktop switch";
+      # Use same path as in sudoerc, so it can be executed without password
+      awg-quick = "sudo ${pkgs.amneziawg-tools}/bin/awg-quick";
     };
 
     siteFunctions = {

@@ -60,6 +60,24 @@
 
   security = {
     rtkit.enable = true;
+    sudo = {
+      enable = true;
+      extraRules = [
+        {
+          commands = [
+            {
+              command = "${pkgs.amneziawg-tools}/bin/awg-quick";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.amneziawg-tools}/bin/awg-quick down";
+              options = ["NOPASSWD"];
+            }
+          ];
+          groups = ["wheel"];
+        }
+      ];
+    };
   };
 
   fonts.packages = [
