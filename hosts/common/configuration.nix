@@ -66,21 +66,6 @@
     };
   };
 
-  systemd.services.amnezia-vpn = {
-    description = "AmneziaVPN background service";
-
-    wantedBy = ["multi-user.target"];
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
-
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
-      Restart = "on-failure";
-      User = "root";
-    };
-  };
-
   security = {
     rtkit.enable = true;
     sudo = {
@@ -140,7 +125,6 @@
   environment.systemPackages = with pkgs; [
     steam-run
     telegram-desktop
-    amnezia-vpn
     fastfetch
     wget
     git
