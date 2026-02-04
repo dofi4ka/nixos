@@ -347,7 +347,7 @@ in {
     historyLimit = 50000;
   };
 
-  programs.nixvim = {
+  programs.nixvim = {lib, ...}: {
     keymaps = [
       # Move around windows using <A-[hjkl]> keys
       {
@@ -477,6 +477,30 @@ in {
         action = "<cmd>NvimTreeToggle<cr>";
         options.desc = "NvimTree toggle";
       }
+      {
+        mode = "n";
+        key = "<leader>gD";
+        action = "<cmd>Telescope lsp_definitions<cr>";
+        options.desc = "Telescope definition";
+      }
+      {
+        mode = "n";
+        key = "<leader>gr";
+        action = "<cmd>Telescope lsp_references<cr>";
+        options.desc = "Telescope lsp references";
+      }
+      {
+        mode = "n";
+        key = "<leader>gs";
+        action = "<cmd>Telespoce lsp_document_symbols<cr>";
+        options.desc = "Telescope document symbols";
+      }
+      {
+        mode = "n";
+        key = "<leader>gS";
+        action = "<cmd>Telescope lsp_workspace_symbols<cr>";
+        options.desc = "Telescope lsp workspace symbols";
+      }
     ];
     enable = true;
     extraPackages = with pkgs; [
@@ -493,6 +517,7 @@ in {
       typescript-language-server
       prettier
       clang
+      astro-language-server
     ];
     opts = {
       number = true;
@@ -504,6 +529,15 @@ in {
     };
     globals.mapleader = " ";
     plugins = {
+      mini-icons.enable = true;
+      mini-ai.enable = true;
+      mini-bracketed.enable = true;
+      mini-comment.enable = true;
+      mini-completion.enable = true;
+      mini-cursorword.enable = true;
+      mini-diff.enable = true;
+
+      ts-comments.enable = true;
       nvim-tree.enable = true;
       telescope.enable = true;
       wakatime.enable = true;
@@ -523,6 +557,7 @@ in {
           jdtls.enable = true;
           ts_ls.enable = true;
           clangd.enable = true;
+          astro.enable = true;
         };
         keymaps = {
           diagnostic = {
@@ -531,10 +566,10 @@ in {
           };
           lspBuf = {
             K = "hover";
-            gr = "references";
+            # gr = "references";
             gd = "definition";
-            gi = "implementation";
-            gt = "type_definition";
+            # gi = "implementation";
+            # gt = "type_definition";
             "<leader>lr" = "rename";
             "<leader>lc" = "code_action";
             "<leader>lf" = "format";
@@ -554,6 +589,7 @@ in {
             typescript = ["prettier"];
             javascriptreact = ["prettier"];
             typescriptreact = ["prettier"];
+            astro = ["prettier"];
             cpp = ["clang-format"];
           };
           format_on_save = {
@@ -574,34 +610,15 @@ in {
             "javascript"
             "typescript"
             "cpp"
+            "css"
+            "astro"
           ];
           highlight = {
             enable = true;
           };
         };
       };
-      cmp = {
-        enable = true;
-        autoEnableSources = true;
-        settings = {
-          mapping = {
-            "<Tab>" = "cmp.mapping.select_next_item()";
-            "<S-Tab>" = "cmp.mapping.select_prev_item()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<C-e>" = "cmp.mapping.abort()";
-          };
-          sources = [
-            {name = "nvim_lsp";}
-            {name = "buffer";}
-            {name = "path";}
-          ];
-        };
-      };
-      cmp-nvim-lsp.enable = true;
-      cmp-buffer.enable = true;
-      cmp-path.enable = true;
     };
-    colorschemes.tokyonight.enable = true;
+    colorschemes.catppuccin.enable = true;
   };
 }
